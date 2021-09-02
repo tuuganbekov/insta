@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>search</title>
+</head>
+<body>
+    <form method="get" action="">
+            {{form.as_p}}
+      <button type="submit">search</button>
+</form>
+
+{%for user in users%}
+    <p><a href="{%url 'profile' user.user.id %}">{{user.user}}</a></p>
+{%endfor%}
+{{test}}
+
+</body>
+</html>

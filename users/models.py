@@ -10,7 +10,7 @@ class Profile(models.Model):
     sur_name = models.CharField(max_length=200)
     user = models.OneToOneField(
         User, on_delete=models.CASCADE,
-        related_name="user"
+        related_name="user", null=True, blank=True
     )
 
     def __str__(self):
