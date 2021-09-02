@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Posts</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+<h1>All posts</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Title</th>
+      <th scope="col">Description</th>
+      <th scope="col">Hashtag</th>
+      <th scope="col">Image</th>
+      <th scope="col">Author</th>
+
+    </tr>
+  </thead>
+  <tbody>
+  {% for post in posts%}
+    <tr>
+      <th scope="row">{{post.id}}</th>
+      <td><a href="{%url 'detail' post.id%}">{{post.title}}</a></td>
+      <td>{{post.descr| truncatewords:3}}</td>
+
+      <td>
+        {%for tag in post.hashtag_set.all %}
+        {{tag.title| truncatechars:4}}
+         {%endfor%}
+      </td>
+
+      <td><img src="{{post.posts.all.first}}" alt="hf" width=50 height=50></td>
+
+       <td>
+        {{post.author}}
+      </td>
+    </tr>
+{% endfor %}
+  </tbody>
+</table>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+</html>
